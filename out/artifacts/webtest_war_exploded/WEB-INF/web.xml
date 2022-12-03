@@ -10,7 +10,24 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>servlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
+        <url-pattern>/ueser</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ParamServlet</servlet-name>
+        <servlet-class>Web.ParamServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ParamServlet</servlet-name>
+        <url-pattern>/paramtest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShowHeadersServlet</servlet-name>
+        <servlet-class>Web.ShowHeadersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowHeadersServlet</servlet-name>
+        <url-pattern>/showheaders</url-pattern>
+    </servlet-mapping>
 </web-app>
