@@ -1,5 +1,3 @@
-import Web.Servlet;
-
 public class Main{
     public static void main(String[] args) {
     }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<friends>
+<friend>
+<name>宋涛</name>
+<phone>13888888888</phone>
+<email>123456@qq.com</email>
+<address>东北大学浑南校区管理馆118518</address>
+</friend>
+<friend>
+<name>李勇</name>
+<phone>13888889999</phone>
+<email>456789@qq.com</email>
+<address>东北大学浑南校区建筑馆118312</address>
+</friend>
+<friend>
+<name>刘云</name>
+<phone>13999999999</phone>
+<email>765431@qq.com</email>
+<address>东北大学浑南校区信息馆118</address>
+</friend>
+</friends>
