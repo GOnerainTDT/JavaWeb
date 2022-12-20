@@ -76,7 +76,7 @@ function checkStudentInfo(){
 	     <tr>			
 	    	<td> <label for="dept">ѧԺ: </label></td>
 			<td> <input type="text" name="dept" id="dept"></td>        
-	     </tr>      
+	     </tr>
 	          
 	  </table> 
 	 <input  name="entity" id="entity" value="Student" type="hidden">		

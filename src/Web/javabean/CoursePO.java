@@ -30,7 +30,7 @@ public class CoursePO {
         this.credit = credit;
     }
 
-    public String getAge() {
+    public String getPrerequisite() {
         return prerequisite;
     }
 

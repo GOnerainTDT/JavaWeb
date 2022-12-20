@@ -12,133 +12,129 @@ public class CourseDAO {
         cn = con;
     }
 
-    public void addCourse(StudentPO student) {
+    public void addCourse(CoursePO course) {
         try {
-            StudentPO unique = queryStudentByKey(student.getNo());
+            CoursePO unique = queryStudentByKey(course.getNo());
             if (unique != null) {
-                throw new UniqueException("该学生已经注册！");
+                throw new UniqueException("该课程已经注册！");
             }
-            String sqlStr = "insert into student(Sno,Sname,Ssex,Sage,Sdept) values(?,?,?,?,?)";
+            String sqlStr = "insert into course (Cno,Cname,Ccredit,prerequisite) values(?,?,?,?)";
             PreparedStatement prepStmt = cn.prepareStatement(sqlStr); // create
-            prepStmt.setString(1, student.getNo());
-            prepStmt.setString(2, student.getName());
-            prepStmt.setString(3, student.getSex());
-            prepStmt.setInt(4, student.getAge());
-            prepStmt.setString(5, student.getDept());
+            prepStmt.setString(1, course.getNo());
+            prepStmt.setString(2, course.getName());
+            prepStmt.setString(3, course.getCredit());
+            prepStmt.setString(4, course.getCredit());
             prepStmt.executeUpdate();
 
         } catch (Exception e) {
-            System.out.println("addStudent error:" + e);
+            System.out.println("addCourse error:" + e);
         }
     }
 
-    public void addStudents(ArrayList<StudentPO> students) {
-        for (StudentPO student : students) {
-//            addStudent(student);
+    public void addCourses(ArrayList<CoursePO> courses) {
+        for (CoursePO course : courses) {
+            addCourse(course);
         }
 
     }
 
-    public void deleteStudent(StudentPO student) {
+    public void deleteCourse(CoursePO course) {
         try {
             if (cn != null) {
-                String sqlStr = "delete from student where Sno=?";
+                String sqlStr = "delete from course where Cno=?";
                 PreparedStatement prepStmt = cn.prepareStatement(sqlStr); // create
                 // a
                 // statement
-                prepStmt.setString(1, student.getNo());
+                prepStmt.setString(1, course.getNo());
                 prepStmt.executeUpdate();
             }
 
         } catch (Exception e) {
-            System.out.println("deleteStudent error:" + e);
+            System.out.println("deleteCourse error:" + e);
         }
     }
 
-    public void deleteStudents(ArrayList<StudentPO> students) {
-        for (StudentPO student : students) {
-            deleteStudent(student);
+    public void deleteCourses(ArrayList<CoursePO> courses) {
+        for (CoursePO course : courses) {
+            deleteCourse(course);
         }
 
     }
 
-    public void updateStudent(StudentPO student) {
+    public void updateCourse(CoursePO course) {
         try {
             if (cn != null) {
-                String sqlStr = "update Student set Sname=?,Ssex=?,Sage=?,Sdept=? "
-                        + " where Sno=?";
+                String sqlStr = "update Course set Cname=?,Ccredit=?,prerequisite=? "
+                        + " where Cno=?";
                 PreparedStatement prepStmt = cn.prepareStatement(sqlStr); // create
                 // a
                 // statement
-                prepStmt.setString(1, student.getName());
-                prepStmt.setString(2, student.getSex());
-                prepStmt.setInt(3, student.getAge());
-                prepStmt.setString(4, student.getDept());
-                prepStmt.setString(5, student.getNo());
+                prepStmt.setString(1, course.getName());
+                prepStmt.setString(2, course.getCredit());
+                prepStmt.setString(3, course.getPrerequisite());
+                prepStmt.setString(4, course.getNo());
                 prepStmt.executeUpdate();
             }
 
         } catch (Exception e) {
-            System.out.println("updateStudent error:" + e);
+            System.out.println("updateCourse error:" + e);
         }
     }
 
-    public void updateStudents(ArrayList<StudentPO> students) {
-        for (StudentPO student : students) {
-            updateStudent(student);
+    public void updateCourses(ArrayList<CoursePO> courses) {
+        for (CoursePO course : courses) {
+            updateCourse(course);
         }
 
     }
 
-    public StudentPO queryStudentByKey(String no) {
-        StudentPO student = null;
+    public CoursePO queryStudentByKey(String no) {
+        CoursePO course = null;
         try {
             if (cn != null) {
-                String sqlStr = "SELECT * FROM student  where Sno=?";
+                String sqlStr = "SELECT * FROM Course  where Cno=?";
                 PreparedStatement prepStmt = cn.prepareStatement(sqlStr);
                 prepStmt.setString(1, no);
                 ResultSet rs = prepStmt.executeQuery();
                 if (rs.next()) {
-                    student = new StudentPO();
-                    student.setNo(rs.getString("Sno"));
-                    student.setName(rs.getString("Sname"));
-                    student.setAge(rs.getInt("Sage"));
-                    student.setSex(rs.getString("Ssex"));
-                    student.setDept(rs.getString("Sdept"));
+                    course = new CoursePO();
+                    course.setNo(rs.getString("Cno"));
+                    course.setName(rs.getString("Cname"));
+                    course.setCredit(rs.getString("Ccredit"));
+                    course.setPrerequisite(rs.getString("prerequisite"));
                 }
             }
 
         } catch (Exception e) {
-            System.out.println("queryStudent error:" + e);
+            System.out.println("queryCourse error:" + e);
         }
 
-        return student;
+        return course;
 
     }
 
-    public ArrayList<StudentPO> queryStudents() {
-        ArrayList<StudentPO> students = new ArrayList<StudentPO>();
-        StudentPO student;
+    public ArrayList<CoursePO> queryCourses() {
+        ArrayList<CoursePO> courses = new ArrayList<CoursePO>();
+        CoursePO course;
         try {
             if (cn != null) {
                 Statement stmt = cn.createStatement();
                 ResultSet rs = stmt
-                        .executeQuery("SELECT * FROM student order by Sno");
+                        .executeQuery("SELECT * FROM Course order by Cno");
                 while (rs.next()) {
-                    student = new StudentPO();
-                    student.setNo(rs.getString("Sno"));
-                    student.setName(rs.getString("Sname"));
-                    student.setAge(rs.getInt("Sage"));
-                    student.setSex(rs.getString("Ssex"));
-                    student.setDept(rs.getString("Sdept"));
-                    students.add(student);
+                    course = new CoursePO();
+                    course.setNo(rs.getString("Cno"));
+                    course.setName(rs.getString("Cname"));
+                    course.setCredit(rs.getString("Ccredit"));
+                    course.setPrerequisite(rs.getString("prerequisite"));
+                    courses.add(course);
                 }
             }
 
         } catch (Exception e) {
-            System.out.println("queryStudent error:" + e);
+            System.out.println("queryCourse error:" + e);
         }
 
-        return students;
+        return courses;
     }
 }
