@@ -36,6 +36,7 @@ public class CoursePO {
 
     public void setPrerequisite(String prerequisite) {
         this.prerequisite = prerequisite;
+        System.out.println("Set + " + prerequisite);
     }
 
 }

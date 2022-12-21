@@ -51,9 +51,11 @@
   </Tr>
   <%
     CoursePO course;
+    List<String> list = new ArrayList<>();
     for (int index=0;index<courses.size();index++){
       course=courses.get(index);
-      System.out.println(courses.size());
+      list.add(course.getNo() + " " + course.getName());
+      System.out.println("List + Prerequisite " + course.getPrerequisite());
   %>
   <tr onclick="choose('<%=index+1%>')">
     <td><%=course.getNo()%></td>
@@ -61,7 +63,10 @@
     <td><%=course.getCredit()%></td>
     <td><%=course.getPrerequisite()%></td>
   </tr>
-  <%} %>
+  <%}
+//    HttpSession session = request.getSession();
+    session.setAttribute("list", list);
+    %>
 </Table>
 <p>
   <input type="button" name="add" value="ÐÂÔö" onclick="gotoAdd()">

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=gbk"   pageEncoding="gbk"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@ page import="Web.javabean.CoursePO" %>
 <%@ page import="java.util.ArrayList" %>
@@ -24,7 +25,7 @@
                 return false;
             }
             if (_credit==null || _credit.toString()==""){
-                alert("年龄不能为空，请输入！");
+                alert("学分不能为空，请输入！");
                 document.courseAdd.Ccredit.focus();
                 return false;
             }
@@ -37,7 +38,7 @@
 </head>
 <body>
 
-<h3>增加学生记录</h3>
+<h3>增加课程记录</h3>
 <form name="courseAdd" id="courseAdd" method="post" action="/JavaAdvance/ApplicationController" onsubmit="return checkStudentInfo();">
     <table id="courseInfo"   border="0" cellspacing="0" >
         <tr>
@@ -52,30 +53,23 @@
             <td> <label for="Ccredit">学分: </label></td>
             <td> <input type="text" name="Ccredit" id="Ccredit"></td>
         </tr>
-        <tr>
-            <label for="prerequisite">前向选修: </label><br>
-            <select id="prerequisite" name="prerequisite">
         <%
-            request.setCharacterEncoding("gbk");
-            List<CoursePO> courses=(List<CoursePO>)request.getAttribute("courseList");
-            for (CoursePO course : courses){
+            CoursePO course;
+            if (session != null) {
+                List<String> list = (List<String>) session.getAttribute("list");
+                list.add("无前向选修");
+                System.out.println(list.size());
+                System.out.println(list.get(0));
         %>
-                <option <%=course.getPrerequisite() + courses.size()%> </option>
-        <%}%>
-            </select>
-        </tr>
-<%--        <tr>--%>
-<%--            <td> <label for="prerequisite">前向选修: </label></td>--%>
-<%--            <td> <input type="text" name="prerequisite" id="prerequisite"></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <label for="prerequisite">前向选修: </label><br>--%>
-<%--            <select id="prerequisite" name="prerequisite">--%>
-<%--                <c:forEach var="pp" items="${pps}">--%>
-<%--                    <option value="${pp}">${pp}</option>--%>
-<%--                </c:forEach>--%>
-<%--            </select>--%>
-<%--        </tr>--%>
+        <select name = "prerequisite">
+            <c:forEach items="${list}" var="item">
+                <option value="${item}">${item}</option>
+            </c:forEach>
+        </select>
+
+        <%
+            }
+        %>
 
     </table>
     <input  name="entity" id="entity" value="Course" type="hidden">

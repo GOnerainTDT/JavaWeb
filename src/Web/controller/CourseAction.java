@@ -26,19 +26,26 @@ public class CourseAction implements IAction{
             String credit = request.getParameter("Ccredit");
             course.setCredit(credit);
             String prerequisite = request.getParameter("prerequisite");
+            System.out.println("prerequisite" + prerequisite);
             course.setPrerequisite(prerequisite);
 
             if (operation.equals("insert")) {
                 courseDAO.addCourse(course);
+                System.out.println(course.getPrerequisite());
             } else if (operation.equals("delete")) {
+                courseDAO.deleteCourse(course);
 //                studentDAO.deleteStudent(student);
             } else if (operation.equals("update")) {
+                courseDAO.updateCourse(course);
 //                studentDAO.updateStudent(student);
             }
 
         }
 
         List<CoursePO> courses = courseDAO.queryCourses();
+        for (CoursePO course : courses){
+            System.out.println("Action " + course.getPrerequisite());
+        }
 //		List<StudentPO> students;
         request.setAttribute("courseList", courses);
         //HttpSession session=request.getSession(true);

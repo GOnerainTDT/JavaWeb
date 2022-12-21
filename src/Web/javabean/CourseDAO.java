@@ -23,7 +23,7 @@ public class CourseDAO {
             prepStmt.setString(1, course.getNo());
             prepStmt.setString(2, course.getName());
             prepStmt.setString(3, course.getCredit());
-            prepStmt.setString(4, course.getCredit());
+            prepStmt.setString(4, course.getPrerequisite());
             prepStmt.executeUpdate();
 
         } catch (Exception e) {
@@ -119,14 +119,14 @@ public class CourseDAO {
         try {
             if (cn != null) {
                 Statement stmt = cn.createStatement();
-                ResultSet rs = stmt
-                        .executeQuery("SELECT * FROM Course order by Cno");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM Course order by Cno");
                 while (rs.next()) {
                     course = new CoursePO();
                     course.setNo(rs.getString("Cno"));
                     course.setName(rs.getString("Cname"));
                     course.setCredit(rs.getString("Ccredit"));
                     course.setPrerequisite(rs.getString("prerequisite"));
+                    System.out.println("queryCourses + " + rs.getString("prerequisite"));
                     courses.add(course);
                 }
             }
