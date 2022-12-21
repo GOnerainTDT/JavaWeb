@@ -14,7 +14,7 @@ public class CourseDAO {
 
     public void addCourse(CoursePO course) {
         try {
-            CoursePO unique = queryStudentByKey(course.getNo());
+            CoursePO unique = queryCourseByKey(course.getNo());
             if (unique != null) {
                 throw new UniqueException("该课程已经注册！");
             }
@@ -88,7 +88,7 @@ public class CourseDAO {
 
     }
 
-    public CoursePO queryStudentByKey(String no) {
+    public CoursePO queryCourseByKey(String no) {
         CoursePO course = null;
         try {
             if (cn != null) {

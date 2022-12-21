@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.util.List;
 
-public class CourseAction implements IAction{
+public class ScoreAction implements IAction{
     @Override
     public String execute(HttpServletRequest request, Connection cn) {
         String operation = request.getParameter("operation");
         StudentDAO studentDAO = new StudentDAO(cn);
         CourseDAO courseDAO = new CourseDAO(cn);
-//        ScoreDAO scoreDAO = new ScoreDAO(cn);
+        ScoreDAO scoreDAO = new ScoreDAO(cn);
         if (operation.equals("insert") || operation.equals("update")
                 || operation.equals("delete")) {
             CoursePO course = new CoursePO();
@@ -48,6 +48,6 @@ public class CourseAction implements IAction{
         request.setAttribute("courseList", courses);
         //HttpSession session=request.getSession(true);
         //session.setAttribute("courseList", courses);
-        return "/CourseList.jsp";
+        return "/ScoreList.jsp";
     }
 }
