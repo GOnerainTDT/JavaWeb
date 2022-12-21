@@ -14,10 +14,13 @@ public class ScoreDAO {
 
     public void addScore(ScorePO score) {
         try {
+            System.out.println(12334);
             ScorePO unique = queryGradeByKey(score.getCno(), score.getSno());
+            System.out.println(12335);
             if (unique != null) {
                 throw new UniqueException("该学生的课程成绩已经注册！");
             }
+            System.out.println(1233);
             String sqlStr = "insert into score (Cno,Sno,grade) values(?,?,?)";
             PreparedStatement prepStmt = cn.prepareStatement(sqlStr); // create
             prepStmt.setString(1, score.getCno());
@@ -113,13 +116,13 @@ public class ScoreDAO {
 
     }
 
-    public ArrayList<ScorePO> queryCourses() {
+    public ArrayList<ScorePO> queryScores() {
         ArrayList<ScorePO> scores = new ArrayList<ScorePO>();
         ScorePO score;
         try {
             if (cn != null) {
                 Statement stmt = cn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM Course order by Cno");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM Score order by Cno");
                 while (rs.next()) {
                     score = new ScorePO();
                     score.setCno(rs.getString("Cno"));

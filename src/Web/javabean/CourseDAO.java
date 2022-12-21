@@ -126,7 +126,6 @@ public class CourseDAO {
                     course.setName(rs.getString("Cname"));
                     course.setCredit(rs.getString("Ccredit"));
                     course.setPrerequisite(rs.getString("prerequisite"));
-                    System.out.println("queryCourses + " + rs.getString("prerequisite"));
                     courses.add(course);
                 }
             }
