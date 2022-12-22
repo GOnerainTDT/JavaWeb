@@ -32,10 +32,8 @@ public class CourseAction implements IAction{
                 System.out.println(course.getPrerequisite());
             } else if (operation.equals("delete")) {
                 courseDAO.deleteCourse(course);
-//                studentDAO.deleteStudent(student);
             } else if (operation.equals("update")) {
                 courseDAO.updateCourse(course);
-//                studentDAO.updateStudent(student);
             }
 
         }

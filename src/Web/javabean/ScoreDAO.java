@@ -42,7 +42,7 @@ public class ScoreDAO {
     public void deleteScore(ScorePO score) {
         try {
             if (cn != null) {
-                String sqlStr = "delete from course where Cno=? AND Sno=?";
+                String sqlStr = "delete from score where Cno=? AND Sno=?";
                 PreparedStatement prepStmt = cn.prepareStatement(sqlStr); // create
                 // a
                 // statement

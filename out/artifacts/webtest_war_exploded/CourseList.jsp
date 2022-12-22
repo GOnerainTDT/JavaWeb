@@ -12,29 +12,28 @@
   <script language="javascript">
     function choose(number){
       var rowNo = eval(number);
-      document.forwarder.no.value = document.all("listTable").rows[rowNo].cells[0].innerText;
-      document.forwarder.name.value = document.all("listTable").rows[rowNo].cells[1].innerText;
-      document.forwarder.credit.value = document.all("listTable").rows[rowNo].cells[2].innerText;
-      document.forwarder.prerequisite.value = document.all("listTable").rows[rowNo].cells[3].innerText;
-      // document.forwarder.dept.value = document.all("listTable").rows[rowNo].cells[4].innerText;
+      document.forwarder.no.value = document.all("clistTable").rows[rowNo].cells[0].innerText;
+      document.forwarder.name.value = document.all("clistTable").rows[rowNo].cells[1].innerText;
+      document.forwarder.credit.value = document.all("clistTable").rows[rowNo].cells[2].innerText;
+      document.forwarder.prerequisite.value = document.all("clistTable").rows[rowNo].cells[3].innerText;
 
-      if (document.all("listTable").rows.length>1) {
-        for (var i=1; i<document.all("listTable").rows.length; i++){
-          document.all("listTable").rows[i].style.backgroundColor="";
+      if (document.all("clistTable").rows.length>1) {
+        for (var i=1; i<document.all("clistTable").rows.length; i++){
+          document.all("clistTable").rows[i].style.backgroundColor="";
         }
       }
-      document.all("listTable").rows[rowNo].style.backgroundColor="#ff998f";
+      document.all("clistTable").rows[rowNo].style.backgroundColor="#ff998f";
     }
     function gotoAdd(){
       document.forwarder.action="Add.jsp"
       document.forwarder.submit();
     }
     function gotoUpdate(){
-      document.forwarder.action="StudentUpdate.jsp"
+      document.forwarder.action="CourseUpdate.jsp"
       document.forwarder.submit();
     }
     function gotoDelete(){
-      document.forwarder.action="StudentDelete.jsp"
+      document.forwarder.action="CourseDelete.jsp"
       document.forwarder.submit();
     }
     function gotoPortal(){

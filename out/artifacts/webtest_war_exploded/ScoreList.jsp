@@ -45,7 +45,7 @@
       document.forwarder.submit();
     }
     function gotoUpdate(){
-      document.forwarder.action="StudentUpdate.jsp"
+      document.forwarder.action="ScoreDelete.jsp"
       document.forwarder.submit();
     }
     function gotoDelete(){
@@ -67,7 +67,7 @@
 </Table>
 <p>
   <input type="button" name="add" value="学生选课" onclick="gotoAdd()">
-  <input type="button" name="edit" value="修改" onclick="gotoUpdate()">
+  <input type="button" name="edit" value="学生退课" onclick="gotoUpdate()">
   <input type="button" name="delete" value="给定成绩" onclick="gotoDelete()">
   <input type="button" name="exit" value="退回门户" onclick="gotoPortal()">
 </p>

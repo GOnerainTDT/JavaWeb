@@ -29,12 +29,11 @@ public class ScoreAction implements IAction{
                 scoreDAO.addScore(score);
                 System.out.println("score + " + score.getCno());
             } else if (operation.equals("delete")) {
-//                courseDAO.deleteCourse(course);
-//                studentDAO.deleteStudent(student);
+                scoreDAO.deleteScore(score);
+                System.out.println("scored + " + score.getCno());
+                System.out.println("scored + " + score.getSno());
             } else if (operation.equals("update")) {
                 scoreDAO.updateScore(score);
-//                courseDAO.updateCourse(course);
-//                studentDAO.updateStudent(student);
             }
 
         } else if (operation.equals("up")) {
